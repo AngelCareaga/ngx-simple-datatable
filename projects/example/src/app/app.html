@@ -1,7 +1,6 @@
-<!-- ./projects/example/src/app/app.html -->
+<!-- projects/example/src/app/app.html -->
 <div class="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
   <app-header></app-header>
-
   <app-hero></app-hero>
 
   <main class="py-16 px-4 sm:px-6 lg:px-8">
@@ -11,423 +10,50 @@
           <nav class="flex space-x-1 bg-white dark:bg-gray-800 rounded-lg p-1 shadow-soft">
             <button
               (click)="switchExample('basic')"
-              [class]="
-                currentExample() === 'basic'
-                  ? 'bg-primary-600 text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-              "
+              [class]="getTabClass('basic')"
               class="px-6 py-3 text-sm font-medium rounded-md transition-all duration-200"
             >
               Basic Example
             </button>
             <button
               (click)="switchExample('advanced')"
-              [class]="
-                currentExample() === 'advanced'
-                  ? 'bg-primary-600 text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-              "
+              [class]="getTabClass('advanced')"
               class="px-6 py-3 text-sm font-medium rounded-md transition-all duration-200"
             >
               Advanced Example
             </button>
             <button
               (click)="switchExample('server')"
-              [class]="
-                currentExample() === 'server'
-                  ? 'bg-primary-600 text-white shadow-sm'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-              "
+              [class]="getTabClass('server')"
               class="px-6 py-3 text-sm font-medium rounded-md transition-all duration-200"
             >
               Server-Side
+            </button>
+            <button
+              (click)="switchExample('templates')"
+              [class]="getTabClass('templates')"
+              class="px-6 py-3 text-sm font-medium rounded-md transition-all duration-200"
+            >
+              Custom Templates
             </button>
           </nav>
         </div>
       </div>
 
       @if (currentExample() === 'basic') {
-        <app-example-card
-          title="Basic DataTable"
-          description="Simple data table with sorting, filtering, and pagination. Client-side operations with automatic filtering."
-        >
-          <div class="space-y-4">
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
-              <div class="flex-1 max-w-md">
-                <label for="search" class="sr-only">Search</label>
-                <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <input
-                    id="search"
-                    type="text"
-                    [ngModel]="searchTerm()"
-                    (ngModelChange)="onGlobalSearch($event)"
-                    placeholder="Search users..."
-                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                  />
-                </div>
-              </div>
-
-              <div class="flex items-center space-x-4">
-                @if (activeFiltersCount() > 0) {
-                  <div class="flex items-center space-x-2 px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-md">
-                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 2v-6.586a1 1 0 00-.293-.707L3.293 7.414A1 1 0 013 6.707V4z"
-                      ></path>
-                    </svg>
-                    <span class="text-sm text-blue-700 dark:text-blue-300">{{ activeFiltersCount() }} filters</span>
-                  </div>
-                }
-
-                @if (selectedRowsCount() > 0) {
-                  <div class="flex items-center space-x-2">
-                    <span class="text-sm text-gray-600 dark:text-gray-400">{{ selectedRowsCount() }} selected</span>
-                    <button
-                      (click)="exportSelection()"
-                      class="px-3 py-1 text-sm bg-green-100 hover:bg-green-200 text-green-700 rounded-md transition-colors"
-                    >
-                      Export CSV
-                    </button>
-                  </div>
-                }
-              </div>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-soft overflow-hidden">
-              <ngx-simple-datatable
-                [rows]="rows()"
-                [columns]="basicColumns()"
-                [loading]="loading()"
-                [search]="searchTerm()"
-                [hasCheckbox]="true"
-                [pagination]="true"
-                [sortable]="true"
-                [columnFilter]="true"
-                [pageSize]="5"
-                [pageSizeOptions]="[5, 10, 20]"
-                skin="ngx-sdt-table--striped ngx-sdt-table--hover"
-                tableClass="modern-table"
-                (rowSelect)="onRowSelect($event)"
-                (sortChange)="onSortChange($event)"
-                (filterChange)="onFilterChange($event)"
-                (rowClick)="onRowClick($event)"
-                (pageChange)="onPageChange($event)"
-                (pageSizeChange)="onPageSizeChange($event)"
-                [texts]="SPANISH_TEXTS"
-              >
-              </ngx-simple-datatable>
-            </div>
-          </div>
-        </app-example-card>
+        <app-basic-table />
       }
 
       @if (currentExample() === 'advanced') {
-        <app-example-card
-          title="Advanced DataTable"
-          description="Feature-rich data table with custom templates, actions, sticky header, and enhanced styling."
-        >
-          <div class="space-y-4">
-            <div class="flex justify-between items-center">
-              <div class="text-sm text-gray-600 dark:text-gray-400">Advanced features: Custom slots, sticky header, row actions</div>
-
-              @if (selectedRowsCount() > 0) {
-                <div class="flex items-center space-x-2">
-                  <span class="text-sm text-gray-600 dark:text-gray-400">{{ selectedRowsCount() }} selected</span>
-                  <button
-                    (click)="clearSelection()"
-                    class="px-3 py-1 text-sm bg-red-100 hover:bg-red-200 text-red-700 rounded-md transition-colors"
-                  >
-                    Clear
-                  </button>
-                  <button
-                    (click)="exportSelection()"
-                    class="px-3 py-1 text-sm bg-green-100 hover:bg-green-200 text-green-700 rounded-md transition-colors"
-                  >
-                    Export
-                  </button>
-                </div>
-              }
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-soft overflow-hidden">
-              <ngx-simple-datatable
-                [rows]="rows()"
-                [columns]="advancedColumns()"
-                [loading]="loading()"
-                [hasCheckbox]="true"
-                [pagination]="true"
-                [sortable]="true"
-                [columnFilter]="true"
-                [pageSize]="8"
-                [pageSizeOptions]="[5, 8, 15, 25]"
-                [stickyHeader]="true"
-                [height]="'600px'"
-                skin="ngx-sdt-table--striped ngx-sdt-table--hover"
-                tableClass="advanced-table"
-                (rowSelect)="onRowSelect($event)"
-                (sortChange)="onSortChange($event)"
-                (filterChange)="onFilterChange($event)"
-                (rowClick)="onRowClick($event)"
-                [texts]="SPANISH_TEXTS"
-              >
-                <ng-template ngxSimpleDatatableSlot="avatar" let-data="data">
-                  <div class="flex items-center">
-                    <img
-                      [src]="data.avatar"
-                      [alt]="data.firstName + ' ' + data.lastName"
-                      class="w-10 h-10 rounded-full object-cover ring-2 ring-gray-200 dark:ring-gray-700"
-                    />
-                  </div>
-                </ng-template>
-
-                <ng-template ngxSimpleDatatableSlot="firstName" let-data="data">
-                  <div class="flex flex-col">
-                    <span class="font-semibold text-gray-900 dark:text-gray-100"> {{ data.firstName }} {{ data.lastName }} </span>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">
-                      {{ data.address.city }}
-                    </span>
-                  </div>
-                </ng-template>
-
-                <ng-template ngxSimpleDatatableSlot="role" let-data="data">
-                  <span [class]="getRoleColor(data.role)" class="inline-flex px-2 py-1 text-xs font-medium rounded-full">
-                    {{ data.role }}
-                  </span>
-                </ng-template>
-
-                <ng-template ngxSimpleDatatableSlot="salary" let-data="data">
-                  <span class="font-mono font-semibold text-gray-900 dark:text-gray-100">
-                    {{ formatSalary(data) }}
-                  </span>
-                </ng-template>
-
-                <ng-template ngxSimpleDatatableSlot="isActive" let-data="data">
-                  <span [class]="getUserStatus(data).class" class="inline-flex px-2 py-1 text-xs font-medium rounded-full">
-                    <span class="w-1.5 h-1.5 rounded-full mr-1.5 mt-0.5" [class]="data.isActive ? 'bg-emerald-400' : 'bg-red-400'"></span>
-                    {{ getUserStatus(data).label }}
-                  </span>
-                </ng-template>
-
-                <ng-template ngxSimpleDatatableSlot="actions" let-data="data">
-                  <div class="flex items-center space-x-1">
-                    <button
-                      (click)="viewProfile(data); $event.stopPropagation()"
-                      class="p-1.5 text-blue-600 hover:text-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-md transition-colors"
-                      title="View Profile"
-                    >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button
-                      (click)="editUser(data); $event.stopPropagation()"
-                      class="p-1.5 text-amber-600 hover:text-amber-800 hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded-md transition-colors"
-                      title="Edit User"
-                    >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                        ></path>
-                      </svg>
-                    </button>
-                    <button
-                      (click)="deleteUser(data); $event.stopPropagation()"
-                      class="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
-                      title="Delete User"
-                    >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </ng-template>
-              </ngx-simple-datatable>
-            </div>
-          </div>
-        </app-example-card>
+        <app-advanced-table />
       }
 
       @if (currentExample() === 'server') {
-        <app-example-card
-          title="Server-Side DataTable"
-          description="DataTable with automatic debouncing, optimized server requests, and smart loading states. Features 300ms filter debouncing."
-        >
-          <div class="space-y-6">
-            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4">
-              <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
-                  <div class="flex items-center space-x-2">
-                    <div
-                      [class]="
-                        getServerStatus().isLoading
-                          ? 'w-3 h-3 bg-amber-400 rounded-full animate-pulse'
-                          : 'w-3 h-3 bg-emerald-400 rounded-full'
-                      "
-                    ></div>
-                    <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {{ getServerStatus().message }}
-                    </span>
-                  </div>
+        <app-server-side-table />
+      }
 
-                  <div class="text-sm text-gray-500 dark:text-gray-400">
-                    Page {{ serverParams().current_page }} • {{ serverParams().pagesize }} per page
-                  </div>
-
-                  @if (getServerStatus().hasFilters) {
-                    <div class="flex items-center space-x-1 px-2 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-md">
-                      <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        ></path>
-                      </svg>
-                      <span class="text-xs text-blue-700 dark:text-blue-300">Filters Active</span>
-                    </div>
-                  }
-                </div>
-
-                <div class="flex items-center space-x-4">
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Total: {{ totalRows() }} records</div>
-                </div>
-              </div>
-
-              @if (getServerStatus().isLoading && getServerStatus().hasFilters) {
-                <div class="mt-3">
-                  <div class="w-full bg-gray-200 rounded-full h-1">
-                    <div class="bg-blue-600 h-1 rounded-full animate-pulse" style="width: 70%"></div>
-                  </div>
-                  <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Processing filters with 300ms debouncing...</div>
-                </div>
-              }
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-soft overflow-hidden">
-              <ngx-simple-datatable
-                [rows]="rows()"
-                [columns]="serverColumns()"
-                [isServerMode]="true"
-                [totalRows]="totalRows()"
-                [loading]="serverLoading()"
-                [hasCheckbox]="true"
-                [pagination]="true"
-                [sortable]="true"
-                [columnFilter]="true"
-                [filterDebounceTime]="300"
-                [page]="serverParams().current_page"
-                [pageSize]="serverParams().pagesize"
-                [sortColumn]="serverParams().sort_column"
-                [sortDirection]="serverParams().sort_direction"
-                [search]="serverParams().search"
-                [pageSizeOptions]="[3, 5, 10, 15]"
-                skin="ngx-sdt-table--striped ngx-sdt-table--hover"
-                tableClass="server-table"
-                (changeServer)="onServerChange($event)"
-                (rowSelect)="onRowSelect($event)"
-                [texts]="SPANISH_TEXTS"
-              >
-              </ngx-simple-datatable>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
-                <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Server Parameters</h4>
-                <div class="space-y-2 text-xs">
-                  <div class="flex justify-between">
-                    <span class="text-gray-600 dark:text-gray-400">Page:</span>
-                    <span class="font-mono">{{ serverParams().current_page }}</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600 dark:text-gray-400">Page Size:</span>
-                    <span class="font-mono">{{ serverParams().pagesize }}</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600 dark:text-gray-400">Sort Column:</span>
-                    <span class="font-mono">{{ serverParams().sort_column }}</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600 dark:text-gray-400">Sort Direction:</span>
-                    <span class="font-mono">{{ serverParams().sort_direction }}</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span class="text-gray-600 dark:text-gray-400">Search:</span>
-                    <span class="font-mono">{{ serverParams().search || '(none)' }}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4">
-                <h4 class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">Performance Features</h4>
-                <div class="space-y-2 text-xs text-gray-600 dark:text-gray-400">
-                  <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 bg-green-400 rounded-full"></div>
-                    <span>Automatic 300ms filter debouncing</span>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
-                    <span>Instant sorting and pagination</span>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
-                    <span>Smart loading states</span>
-                  </div>
-                  <div class="flex items-center space-x-2">
-                    <div class="w-2 h-2 bg-orange-400 rounded-full"></div>
-                    <span>Request deduplication</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-              <div class="flex items-start space-x-3">
-                <svg class="w-5 h-5 text-yellow-600 dark:text-yellow-400 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                <div>
-                  <h5 class="text-sm font-medium text-yellow-800 dark:text-yellow-300">Server-Side Features</h5>
-                  <p class="text-sm text-yellow-700 dark:text-yellow-400 mt-1">
-                    Try typing in the filter inputs to see the automatic debouncing in action. Notice how requests are optimally batched and
-                    the loading states provide clear feedback.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </app-example-card>
+      @if (currentExample() === 'templates') {
+        <app-template-examples />
       }
     </div>
   </main>
