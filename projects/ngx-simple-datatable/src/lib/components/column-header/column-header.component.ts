@@ -1,5 +1,5 @@
 // projects/ngx-simple-datatable/src/lib/components/column-header/column-header.component.ts
-import { Component, computed, input, output, signal, DestroyRef, inject } from '@angular/core';
+import { Component, computed, DestroyRef, inject, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Column, ColumnWidth, SortDirection } from '../../interfaces/column.interface';
@@ -155,6 +155,13 @@ import { DashIconComponent } from '../icons/dash-icon.component';
       }
     </tr>
   `,
+  styles: [
+    `
+      :host {
+        display: contents;
+      }
+    `,
+  ],
   imports: [
     CommonModule,
     FormsModule,
