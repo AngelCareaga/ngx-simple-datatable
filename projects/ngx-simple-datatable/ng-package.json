@@ -1,0 +1,19 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/ngx-simple-datatable",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "assets": [
+    "src/ngx-simple-datatable.css",
+    "src/lib/styles/_variables.css",
+    "src/lib/styles/_mixins.css",
+    "src/lib/styles/_base.css",
+    "src/lib/styles/_table.css",
+    "src/lib/styles/_header.css",
+    "src/lib/styles/_checkbox.css",
+    "src/lib/styles/_filter.css",
+    "src/lib/styles/_pagination.css",
+    "src/lib/styles/_responsive.css"
+  ]
+}

@@ -1,0 +1,266 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_table.css */
+.ngx-sdt-table__header {
+  background: var(
+    --ngx-sdt-header-background,
+    linear-gradient(135deg, var(--ngx-sdt-color-background-gray) 0%, var(--ngx-sdt-color-background-gray-hover) 100%)
+  );
+  border-bottom: var(--ngx-sdt-header-border-width, 2px) solid var(--ngx-sdt-color-border);
+}
+
+.ngx-sdt-table__header.ngx-sdt-table__header--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--ngx-sdt-z-index-sticky);
+}
+
+.ngx-sdt-table__footer {
+  background: var(
+    --ngx-sdt-footer-background,
+    linear-gradient(135deg, var(--ngx-sdt-color-background-gray) 0%, var(--ngx-sdt-color-background-gray-hover) 100%)
+  );
+  border-top: var(--ngx-sdt-footer-border-width, 2px) solid var(--ngx-sdt-color-border);
+}
+
+.ngx-sdt-table__footer.ngx-sdt-table__footer--sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--ngx-sdt-z-index-sticky);
+}
+
+.ngx-sdt-table__header-cell {
+  padding: var(--ngx-sdt-header-cell-padding, var(--ngx-sdt-cell-padding-normal));
+  text-align: var(--ngx-sdt-header-text-align, left);
+  font-weight: var(--ngx-sdt-header-font-weight, var(--ngx-sdt-font-weight-semibold));
+  color: var(--ngx-sdt-header-text-color, var(--ngx-sdt-color-text));
+  vertical-align: middle;
+  border-bottom: var(--ngx-sdt-header-cell-border-width, 1px) solid var(--ngx-sdt-color-border-light);
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+  font-size: var(--ngx-sdt-header-font-size, var(--ngx-sdt-font-size-md));
+  letter-spacing: var(--ngx-sdt-header-letter-spacing, 0.025em);
+}
+
+.ngx-sdt-table__header-cell:first-child {
+  border-top-left-radius: var(--ngx-sdt-border-radius-lg);
+}
+
+.ngx-sdt-table__header-cell:last-child {
+  border-top-right-radius: var(--ngx-sdt-border-radius-lg);
+}
+
+.ngx-sdt-table__header-cell.ngx-sdt-table__header-cell--sticky {
+  position: sticky;
+  left: 0;
+  background: var(
+    --ngx-sdt-sticky-header-background,
+    linear-gradient(135deg, var(--ngx-sdt-color-background-gray) 0%, var(--ngx-sdt-color-background-gray-hover) 100%)
+  );
+  z-index: var(--ngx-sdt-z-index-sticky);
+  box-shadow: var(--ngx-sdt-sticky-shadow, 2px 0 4px rgba(0, 0, 0, 0.05));
+}
+
+.ngx-sdt-table__header-cell.ngx-sdt-table__header-cell--sortable {
+  cursor: pointer;
+  user-select: none;
+  transition: var(--ngx-sdt-transition-colors);
+}
+
+.ngx-sdt-table__header-cell.ngx-sdt-table__header-cell--sortable:hover .ngx-sdt-table__header-content {
+  background-color: var(--ngx-sdt-header-hover-background, var(--ngx-sdt-color-primary-light));
+  border-radius: var(--ngx-sdt-border-radius-md);
+}
+
+.ngx-sdt-table__footer-cell {
+  padding: var(--ngx-sdt-footer-cell-padding, var(--ngx-sdt-cell-padding-normal));
+  text-align: var(--ngx-sdt-footer-text-align, left);
+  font-weight: var(--ngx-sdt-footer-font-weight, var(--ngx-sdt-font-weight-semibold));
+  color: var(--ngx-sdt-footer-text-color, var(--ngx-sdt-color-text));
+  border-top: var(--ngx-sdt-footer-cell-border-width, 1px) solid var(--ngx-sdt-color-border);
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ngx-sdt-table__footer-cell.ngx-sdt-table__footer-cell--sticky {
+  position: sticky;
+  left: 0;
+  background: var(
+    --ngx-sdt-sticky-footer-background,
+    linear-gradient(135deg, var(--ngx-sdt-color-background-gray) 0%, var(--ngx-sdt-color-background-gray-hover) 100%)
+  );
+  z-index: var(--ngx-sdt-z-index-sticky);
+  box-shadow: var(--ngx-sdt-sticky-shadow, 2px 0 4px rgba(0, 0, 0, 0.05));
+}
+
+.ngx-sdt-table__row {
+  border-bottom: var(--ngx-sdt-row-border-width, 1px) solid var(--ngx-sdt-color-border-light);
+  transition: var(--ngx-sdt-transition-all);
+  background-color: var(--ngx-sdt-row-background, var(--ngx-sdt-color-background));
+}
+
+.ngx-sdt-table__row.ngx-sdt-table__row--clickable {
+  cursor: pointer;
+}
+
+.ngx-sdt-table__row.ngx-sdt-table__row--clickable:hover {
+  background-color: var(--ngx-sdt-row-hover-background, var(--ngx-sdt-color-background-gray-hover));
+  box-shadow: var(--ngx-sdt-row-hover-shadow, 0 2px 4px rgba(0, 0, 0, 0.05));
+}
+
+.ngx-sdt-table__row.ngx-sdt-table__row--even {
+  background-color: var(--ngx-sdt-row-even-background, var(--ngx-sdt-color-background));
+}
+
+.ngx-sdt-table__row.ngx-sdt-table__row--odd {
+  background-color: var(--ngx-sdt-row-odd-background, var(--ngx-sdt-color-background-gray-alt));
+}
+
+.ngx-sdt-table__row.ngx-sdt-table__row--selected {
+  background-color: var(--ngx-sdt-row-selected-background, var(--ngx-sdt-color-primary-light));
+  border-color: var(--ngx-sdt-row-selected-border, var(--ngx-sdt-color-primary));
+}
+
+.ngx-sdt-table__row.ngx-sdt-table__row--loading {
+  background: var(--ngx-sdt-color-background) !important;
+  border: transparent !important;
+}
+
+.ngx-sdt-table__cell {
+  padding: var(--ngx-sdt-cell-padding, var(--ngx-sdt-cell-padding-normal));
+  vertical-align: var(--ngx-sdt-cell-vertical-align, middle);
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  font-size: var(--ngx-sdt-cell-font-size, var(--ngx-sdt-font-size-base));
+  line-height: var(--ngx-sdt-cell-line-height, 1.5);
+  color: var(--ngx-sdt-cell-text-color, inherit);
+}
+
+.ngx-sdt-table__cell.ngx-sdt-table__cell--sticky {
+  position: sticky;
+  left: 0;
+  background-color: inherit;
+  z-index: var(--ngx-sdt-z-index-sticky);
+  box-shadow: var(--ngx-sdt-sticky-shadow, 2px 0 4px rgba(0, 0, 0, 0.03));
+}
+
+.ngx-sdt-table__cell.ngx-sdt-table__cell--sticky-offset-checkbox {
+  left: var(--ngx-sdt-checkbox-column-width);
+}
+
+.ngx-sdt-table__cell.ngx-sdt-table__cell--no-data {
+  text-align: center;
+  color: var(--ngx-sdt-no-data-text-color, var(--ngx-sdt-color-text-muted));
+  font-style: var(--ngx-sdt-no-data-font-style, italic);
+  padding: var(--ngx-sdt-no-data-padding, var(--ngx-sdt-spacing-3xl));
+  font-size: var(--ngx-sdt-no-data-font-size, var(--ngx-sdt-font-size-md));
+}
+
+.ngx-sdt-table__cell.ngx-sdt-table__cell--no-data .ngx-sdt-table__cell-content {
+  white-space: normal;
+}
+
+.ngx-sdt-table__cell.ngx-sdt-table__cell--skeleton {
+  padding: var(--ngx-sdt-skeleton-padding, var(--ngx-sdt-spacing-md)) !important;
+  border: transparent !important;
+}
+
+.ngx-sdt-table__cell.ngx-sdt-table__cell--skeleton .ngx-sdt-skeleton-box {
+  height: var(--ngx-sdt-skeleton-height, 2.5rem);
+  background: linear-gradient(
+    90deg,
+    var(--ngx-sdt-skeleton-color-start) 25%,
+    var(--ngx-sdt-skeleton-color-mid) 50%,
+    var(--ngx-sdt-skeleton-color-end) 75%
+  );
+  background-size: 200% 100%;
+  animation: ngx-sdt-skeleton-animation var(--ngx-sdt-skeleton-duration, 1.8s) infinite;
+  border-radius: var(--ngx-sdt-border-radius-md);
+}
+
+.ngx-sdt-table__cell-content {
+  width: 100%;
+  overflow: var(--ngx-sdt-cell-content-overflow, hidden);
+  text-overflow: var(--ngx-sdt-cell-content-text-overflow, ellipsis);
+  white-space: var(--ngx-sdt-cell-content-white-space, nowrap);
+}
+
+.ngx-sdt-table__cell-content--boolean {
+  font-weight: var(--ngx-sdt-boolean-font-weight, var(--ngx-sdt-font-weight-medium));
+  color: var(--ngx-sdt-boolean-text-color, var(--ngx-sdt-color-primary));
+}
+
+.ngx-sdt-table__cell-content--date {
+  color: var(--ngx-sdt-date-text-color, var(--ngx-sdt-color-text-muted));
+  font-variant-numeric: tabular-nums;
+  font-family: var(
+    --ngx-sdt-date-font-family,
+    ui-monospace,
+    SFMono-Regular,
+    'SF Mono',
+    Consolas,
+    'Liberation Mono',
+    Menlo,
+    monospace
+  );
+}
+
+.ngx-sdt-table__cell-content--number {
+  text-align: var(--ngx-sdt-number-text-align, right);
+  font-variant-numeric: tabular-nums;
+  font-family: var(
+    --ngx-sdt-number-font-family,
+    ui-monospace,
+    SFMono-Regular,
+    'SF Mono',
+    Consolas,
+    'Liberation Mono',
+    Menlo,
+    monospace
+  );
+  font-weight: var(--ngx-sdt-number-font-weight, var(--ngx-sdt-font-weight-medium));
+  color: var(--ngx-sdt-number-text-color, inherit);
+}
+
+.ngx-sdt-table__cell-content--text {
+  color: var(--ngx-sdt-text-cell-color, inherit);
+}
+
+.ngx-sdt-table th,
+.ngx-sdt-table td {
+  border-right: none;
+  border-left: none;
+}
+
+@keyframes ngx-sdt-skeleton-animation {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ngx-sdt-table--borderless .ngx-sdt-table__header-cell,
+.ngx-sdt-table--borderless .ngx-sdt-table__cell,
+.ngx-sdt-table--borderless .ngx-sdt-table__footer-cell {
+  border: none;
+}
+
+.ngx-sdt-table--rounded-none .ngx-sdt-table__header-cell:first-child,
+.ngx-sdt-table--rounded-none .ngx-sdt-table__header-cell:last-child {
+  border-radius: 0;
+}
+
+.ngx-sdt-table--dense .ngx-sdt-table__header-cell,
+.ngx-sdt-table--dense .ngx-sdt-table__cell,
+.ngx-sdt-table--dense .ngx-sdt-table__footer-cell {
+  padding: var(--ngx-sdt-cell-padding-compact);
+}
+
+.ngx-sdt-table--loose .ngx-sdt-table__header-cell,
+.ngx-sdt-table--loose .ngx-sdt-table__cell,
+.ngx-sdt-table--loose .ngx-sdt-table__footer-cell {
+  padding: var(--ngx-sdt-spacing-lg) var(--ngx-sdt-spacing-xl);
+}

@@ -1,0 +1,204 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_base.css */
+.ngx-sdt-datatable {
+  position: relative;
+  width: var(--ngx-sdt-table-width);
+  height: var(--ngx-sdt-table-height);
+  max-height: var(--ngx-sdt-table-max-height);
+  min-height: var(--ngx-sdt-table-min-height);
+  font-family: var(
+    --ngx-sdt-font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif
+  );
+  font-size: var(--ngx-sdt-font-size-md);
+  line-height: 1.5;
+  color: var(--ngx-sdt-color-text);
+  box-sizing: border-box;
+  background-color: var(--ngx-sdt-color-background);
+  display: flex;
+  flex-direction: column;
+}
+
+.ngx-sdt-table-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  overflow: auto;
+  border-radius: var(--ngx-sdt-border-radius-lg);
+  border: var(--ngx-sdt-border-width, 1px) solid var(--ngx-sdt-color-border);
+  box-shadow: var(--ngx-sdt-shadow-sm);
+  background-color: var(--ngx-sdt-color-background);
+}
+
+.ngx-sdt-table-container.ngx-sdt-table-container--min-height {
+  min-height: var(--ngx-sdt-table-min-height);
+}
+
+.ngx-sdt-table-container.ngx-sdt-table-container--scroll {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.ngx-sdt-table {
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+  background-color: var(--ngx-sdt-color-background);
+}
+
+.ngx-sdt-table.ngx-sdt-table--striped tbody .ngx-sdt-table__row:nth-child(even) {
+  background-color: var(--ngx-sdt-color-background-gray-light);
+}
+
+.ngx-sdt-table.ngx-sdt-table--hover tbody .ngx-sdt-table__row:hover {
+  background-color: var(--ngx-sdt-color-background-gray-hover);
+  transform: var(--ngx-sdt-hover-transform, translateY(-1px));
+  transition: var(--ngx-sdt-transition-all);
+}
+
+.ngx-sdt-table.ngx-sdt-table--bordered .ngx-sdt-table__header-cell,
+.ngx-sdt-table.ngx-sdt-table--bordered .ngx-sdt-table__cell {
+  border: var(--ngx-sdt-border-width, 1px) solid var(--ngx-sdt-color-border);
+}
+
+.ngx-sdt-table.ngx-sdt-table--compact .ngx-sdt-table__header-cell,
+.ngx-sdt-table.ngx-sdt-table--compact .ngx-sdt-table__cell {
+  padding: var(--ngx-sdt-cell-padding-compact);
+}
+
+.ngx-sdt-table colgroup col {
+  min-width: 0;
+}
+
+.ngx-sdt-table:not([style*='width']) {
+  width: 100% !important;
+}
+
+.ngx-sdt-table--auto-width {
+  width: auto !important;
+  min-width: max-content;
+}
+
+.ngx-sdt-table--preserve-readability .ngx-sdt-table__cell-content {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.ngx-sdt-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--ngx-sdt-color-overlay);
+  backdrop-filter: var(--ngx-sdt-backdrop-filter, blur(2px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--ngx-sdt-z-index-overlay);
+  border-radius: var(--ngx-sdt-border-radius-lg);
+}
+
+.ngx-sdt-datatable * {
+  box-sizing: border-box;
+}
+
+.ngx-sdt-datatable .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@supports (height: 100dvh) {
+  .ngx-sdt-full-viewport {
+    --ngx-sdt-table-height: 100dvh;
+  }
+}
+
+@supports not (height: 100dvh) {
+  .ngx-sdt-full-viewport {
+    --ngx-sdt-table-height: 100vh;
+  }
+}
+
+.ngx-sdt-flex-grow {
+  flex: 1;
+  min-height: 0;
+}
+
+.ngx-sdt-overflow-hidden {
+  overflow: hidden;
+}
+
+.ngx-sdt-overflow-auto {
+  overflow: auto;
+}
+
+.ngx-sdt-overflow-x-auto {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.ngx-sdt-overflow-y-auto {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.ngx-sdt-scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.ngx-sdt-scrollbar-thin::-webkit-scrollbar-track {
+  background: var(--ngx-sdt-color-background-gray);
+  border-radius: var(--ngx-sdt-border-radius-sm);
+}
+
+.ngx-sdt-scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--ngx-sdt-color-border-hover);
+  border-radius: var(--ngx-sdt-border-radius-sm);
+}
+
+.ngx-sdt-scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: var(--ngx-sdt-color-primary);
+}
+
+.ngx-sdt-column-sizing-auto-fit {
+  --ngx-sdt-column-sizing-strategy: auto-fit;
+}
+
+.ngx-sdt-column-sizing-auto-width {
+  --ngx-sdt-column-sizing-strategy: auto-width;
+}
+
+.ngx-sdt-column-sizing-hybrid {
+  --ngx-sdt-column-sizing-strategy: hybrid;
+}
+
+.ngx-sdt-respect-min-widths {
+  --ngx-sdt-respect-column-min-widths: true;
+}
+
+.ngx-sdt-preserve-readability {
+  --ngx-sdt-preserve-readability: true;
+}
+
+.ngx-sdt-allow-horizontal-scroll {
+  --ngx-sdt-allow-horizontal-scroll: true;
+}

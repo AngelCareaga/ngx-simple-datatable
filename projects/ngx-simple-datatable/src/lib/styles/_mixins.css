@@ -1,0 +1,340 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_mixins.css */
+.ngx-sdt-focus-ring {
+  outline: none;
+  border-color: var(--ngx-sdt-color-primary);
+  box-shadow: 0 0 0 3px var(--ngx-sdt-color-primary-light);
+}
+
+.ngx-sdt-button-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--ngx-sdt-button-border-width, 1px) solid var(--ngx-sdt-button-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(--ngx-sdt-button-border-radius, var(--ngx-sdt-border-radius-md));
+  background-color: var(--ngx-sdt-button-background, var(--ngx-sdt-color-background));
+  color: var(--ngx-sdt-button-color, var(--ngx-sdt-color-text));
+  cursor: pointer;
+  transition: var(--ngx-sdt-transition-all);
+  user-select: none;
+  font-weight: var(--ngx-sdt-button-font-weight, var(--ngx-sdt-font-weight-medium));
+  box-shadow: var(--ngx-sdt-button-shadow, var(--ngx-sdt-shadow-xs));
+  font-family: inherit;
+}
+
+.ngx-sdt-button-base:hover:not(.ngx-sdt-button--disabled) {
+  background-color: var(--ngx-sdt-button-hover-background, var(--ngx-sdt-color-primary));
+  border-color: var(--ngx-sdt-button-hover-border, var(--ngx-sdt-color-primary));
+  color: var(--ngx-sdt-button-hover-color, var(--ngx-sdt-color-background));
+  transform: var(--ngx-sdt-button-hover-transform, translateY(-2px));
+  box-shadow: var(--ngx-sdt-button-hover-shadow, var(--ngx-sdt-shadow-md));
+}
+
+.ngx-sdt-button-base:focus {
+  outline: none;
+  border-color: var(--ngx-sdt-button-focus-border, var(--ngx-sdt-color-primary));
+  box-shadow: var(--ngx-sdt-button-focus-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+}
+
+.ngx-sdt-button-base.ngx-sdt-button--disabled {
+  opacity: var(--ngx-sdt-button-disabled-opacity, 0.4);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ngx-sdt-input-base {
+  border: var(--ngx-sdt-input-border-width, 1px) solid var(--ngx-sdt-input-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(--ngx-sdt-input-border-radius, var(--ngx-sdt-border-radius-md));
+  background-color: var(--ngx-sdt-input-background, var(--ngx-sdt-color-background));
+  color: var(--ngx-sdt-input-color, var(--ngx-sdt-color-text));
+  box-sizing: border-box;
+  transition: var(--ngx-sdt-transition-all);
+  font-family: inherit;
+}
+
+.ngx-sdt-input-base:focus {
+  outline: none;
+  border-color: var(--ngx-sdt-input-focus-border, var(--ngx-sdt-color-primary));
+  box-shadow: var(--ngx-sdt-input-focus-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+  transform: var(--ngx-sdt-input-focus-transform, translateY(-1px));
+}
+
+.ngx-sdt-input-base:hover {
+  border-color: var(--ngx-sdt-input-hover-border, var(--ngx-sdt-color-border-hover));
+}
+
+.ngx-sdt-input-base:disabled {
+  opacity: var(--ngx-sdt-input-disabled-opacity, 0.5);
+  cursor: not-allowed;
+  background-color: var(--ngx-sdt-input-disabled-background, var(--ngx-sdt-color-background-gray));
+}
+
+.ngx-sdt-sticky-column {
+  position: sticky;
+  left: 0;
+  background-color: inherit;
+  z-index: var(--ngx-sdt-z-index-sticky);
+  box-shadow: var(--ngx-sdt-sticky-shadow, 2px 0 6px rgba(0, 0, 0, 0.08));
+}
+
+.ngx-sdt-sticky-column.ngx-sdt-table__cell--sticky-offset-checkbox {
+  left: var(--ngx-sdt-checkbox-column-width);
+}
+
+.ngx-sdt-skeleton-loading {
+  background: linear-gradient(
+    90deg,
+    var(--ngx-sdt-skeleton-color-start) 25%,
+    var(--ngx-sdt-skeleton-color-mid) 50%,
+    var(--ngx-sdt-skeleton-color-end) 75%
+  );
+  background-size: 200% 100%;
+  animation: ngx-sdt-skeleton-animation var(--ngx-sdt-skeleton-duration, 1.8s) infinite;
+  border-radius: var(--ngx-sdt-skeleton-border-radius, var(--ngx-sdt-border-radius-md));
+}
+
+@keyframes ngx-sdt-skeleton-animation {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ngx-sdt-utility-hidden {
+  display: none !important;
+}
+
+.ngx-sdt-utility-invisible {
+  visibility: hidden !important;
+}
+
+.ngx-sdt-utility-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.ngx-sdt-utility-truncate {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.ngx-sdt-utility-text-center {
+  text-align: center !important;
+}
+
+.ngx-sdt-utility-text-right {
+  text-align: right !important;
+}
+
+.ngx-sdt-utility-text-left {
+  text-align: left !important;
+}
+
+.ngx-sdt-utility-w-full {
+  width: 100% !important;
+}
+
+.ngx-sdt-utility-h-full {
+  height: 100% !important;
+}
+
+.ngx-sdt-utility-flex {
+  display: flex !important;
+}
+
+.ngx-sdt-utility-flex-col {
+  flex-direction: column !important;
+}
+
+.ngx-sdt-utility-flex-1 {
+  flex: 1 1 0% !important;
+}
+
+.ngx-sdt-utility-items-center {
+  align-items: center !important;
+}
+
+.ngx-sdt-utility-justify-center {
+  justify-content: center !important;
+}
+
+.ngx-sdt-utility-justify-between {
+  justify-content: space-between !important;
+}
+
+.ngx-sdt-utility-gap-1 {
+  gap: 0.25rem !important;
+}
+
+.ngx-sdt-utility-gap-2 {
+  gap: 0.5rem !important;
+}
+
+.ngx-sdt-utility-gap-4 {
+  gap: 1rem !important;
+}
+
+.ngx-sdt-utility-p-0 {
+  padding: 0 !important;
+}
+
+.ngx-sdt-utility-p-2 {
+  padding: 0.5rem !important;
+}
+
+.ngx-sdt-utility-p-4 {
+  padding: 1rem !important;
+}
+
+.ngx-sdt-utility-m-0 {
+  margin: 0 !important;
+}
+
+.ngx-sdt-utility-m-2 {
+  margin: 0.5rem !important;
+}
+
+.ngx-sdt-utility-m-4 {
+  margin: 1rem !important;
+}
+
+.ngx-sdt-utility-bg-transparent {
+  background-color: transparent !important;
+}
+
+.ngx-sdt-utility-border-0 {
+  border-width: 0 !important;
+}
+
+.ngx-sdt-utility-rounded-none {
+  border-radius: 0 !important;
+}
+
+.ngx-sdt-utility-rounded {
+  border-radius: var(--ngx-sdt-border-radius-md) !important;
+}
+
+.ngx-sdt-utility-rounded-lg {
+  border-radius: var(--ngx-sdt-border-radius-lg) !important;
+}
+
+.ngx-sdt-utility-shadow-none {
+  box-shadow: none !important;
+}
+
+.ngx-sdt-utility-shadow {
+  box-shadow: var(--ngx-sdt-shadow-sm) !important;
+}
+
+.ngx-sdt-utility-shadow-lg {
+  box-shadow: var(--ngx-sdt-shadow-lg) !important;
+}
+
+.ngx-sdt-utility-opacity-50 {
+  opacity: 0.5 !important;
+}
+
+.ngx-sdt-utility-opacity-75 {
+  opacity: 0.75 !important;
+}
+
+.ngx-sdt-utility-pointer-events-none {
+  pointer-events: none !important;
+}
+
+.ngx-sdt-utility-cursor-pointer {
+  cursor: pointer !important;
+}
+
+.ngx-sdt-utility-cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.ngx-sdt-utility-select-none {
+  user-select: none !important;
+}
+
+.ngx-sdt-utility-select-text {
+  user-select: text !important;
+}
+
+.ngx-sdt-utility-whitespace-nowrap {
+  white-space: nowrap !important;
+}
+
+.ngx-sdt-utility-whitespace-normal {
+  white-space: normal !important;
+}
+
+.ngx-sdt-utility-font-medium {
+  font-weight: var(--ngx-sdt-font-weight-medium) !important;
+}
+
+.ngx-sdt-utility-font-semibold {
+  font-weight: var(--ngx-sdt-font-weight-semibold) !important;
+}
+
+.ngx-sdt-utility-font-bold {
+  font-weight: var(--ngx-sdt-font-weight-bold) !important;
+}
+
+.ngx-sdt-utility-text-xs {
+  font-size: var(--ngx-sdt-font-size-xs) !important;
+}
+
+.ngx-sdt-utility-text-sm {
+  font-size: var(--ngx-sdt-font-size-sm) !important;
+}
+
+.ngx-sdt-utility-text-base {
+  font-size: var(--ngx-sdt-font-size-base) !important;
+}
+
+.ngx-sdt-utility-text-lg {
+  font-size: var(--ngx-sdt-font-size-lg) !important;
+}
+
+.ngx-sdt-utility-text-primary {
+  color: var(--ngx-sdt-color-primary) !important;
+}
+
+.ngx-sdt-utility-text-secondary {
+  color: var(--ngx-sdt-color-secondary) !important;
+}
+
+.ngx-sdt-utility-text-muted {
+  color: var(--ngx-sdt-color-text-muted) !important;
+}
+
+.ngx-sdt-utility-bg-primary {
+  background-color: var(--ngx-sdt-color-primary) !important;
+}
+
+.ngx-sdt-utility-bg-secondary {
+  background-color: var(--ngx-sdt-color-secondary) !important;
+}
+
+.ngx-sdt-utility-bg-gray {
+  background-color: var(--ngx-sdt-color-background-gray) !important;
+}
+
+.ngx-sdt-utility-border-primary {
+  border-color: var(--ngx-sdt-color-primary) !important;
+}
+
+.ngx-sdt-utility-border-secondary {
+  border-color: var(--ngx-sdt-color-secondary) !important;
+}
+
+.ngx-sdt-utility-border-gray {
+  border-color: var(--ngx-sdt-color-border) !important;
+}

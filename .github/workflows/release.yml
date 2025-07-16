@@ -1,0 +1,170 @@
+name: 🏷️ Release & Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Tipo de release (patch, minor, major)'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+      prerelease:
+        description: '¿Es un prerelease? (ej. rc.0, rc.1)'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  prepare-release:
+    name: 🏗️ Prepare Release
+    runs-on: ubuntu-latest
+    outputs:
+      new-version: ${{ steps.version.outputs.new-version }}
+      release-notes: ${{ steps.notes.outputs.release-notes }}
+
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: npm ci
+
+      - name: 🏷️ Bump version & Sync library version
+        id: version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            if [[ "${CURRENT_VERSION}" == *-* ]]; then
+              NEW_VERSION=$(npm version prerelease --preid=rc --no-git-tag-version | sed 's/v//')
+            else
+              NEW_VERSION=$(npm version pre${{ inputs.release_type }} --preid=rc --no-git-tag-version | sed 's/v//')
+            fi
+          else
+            NEW_VERSION=$(npm version ${{ inputs.release_type }} --no-git-tag-version | sed 's/v//')
+          fi
+          echo "new-version=${NEW_VERSION}" >> $GITHUB_OUTPUT
+          node -e "let pkg = require('./projects/ngx-simple-datatable/package.json'); pkg.version = '${NEW_VERSION}'; require('fs').writeFileSync('./projects/ngx-simple-datatable/package.json', JSON.stringify(pkg, null, 2));"
+
+      - name: 🏗️ Build library
+        run: npm run build:lib
+
+      - name: 📝 Generate release notes
+        id: notes
+        run: |
+          LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          if [ -z "$LAST_TAG" ]; then
+            RELEASE_NOTES="🎉 Primera release de ngx-simple-datatable"
+          else
+            RELEASE_NOTES=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+          fi
+          RELEASE_NOTES="${RELEASE_NOTES//'%'/'%25'}"
+          RELEASE_NOTES="${RELEASE_NOTES//$'\n'/'%0A'}"
+          RELEASE_NOTES="${RELEASE_NOTES//$'\r'/'%0D'}"
+          echo "release-notes=${RELEASE_NOTES}" >> $GITHUB_OUTPUT
+
+      - name: 📤 Upload prepared package
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-package
+          path: |
+            dist/
+            package.json
+            projects/ngx-simple-datatable/package.json
+            README.md
+            LICENSE
+          retention-days: 1
+
+  publish-production:
+    name: 🚀 Publish & Commit Release
+    runs-on: ubuntu-latest
+    needs: [prepare-release]
+
+    permissions:
+      contents: write
+      packages: write
+
+    environment:
+      name: production
+      url: https://www.npmjs.com/package/ngx-simple-datatable
+
+    steps:
+      - name: 📦 Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📥 Download prepared package
+        uses: actions/download-artifact@v4
+        with:
+          name: release-package
+          path: .
+
+      - name: 💾 Commit version bump
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m "chore(release): version ${{ needs.prepare-release.outputs.new-version }}"
+
+      - name: 🏷️ Create Git Tag & Push changes
+        run: |
+          git tag ${{ needs.prepare-release.outputs.new-version }}
+          git push origin main
+          git push origin ${{ needs.prepare-release.outputs.new-version }}
+
+      - name: 🚀 Publish to npm
+        working-directory: ./dist/ngx-simple-datatable
+        run: |
+          if [ "${{ inputs.prerelease }}" = "true" ]; then
+            npm publish --tag next --access public
+          else
+            npm publish --tag latest --access public
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🎉 Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ needs.prepare-release.outputs.new-version }}
+          name: Release ${{ needs.prepare-release.outputs.new-version }}
+          body: |
+            ## 🎉 Nueva versión de ngx-simple-datatable
+
+            ### 📦 Instalación
+            ```bash
+            npm install ngx-simple-datatable@${{ needs.prepare-release.outputs.new-version }}
+            ```
+
+            ### 🌐 Demo en vivo
+            [📱 Ver ejemplos interactivos](https://angelcareaga.github.io/ngx-simple-datatable/)
+
+            ### 📝 Cambios
+            ${{ needs.prepare-release.outputs.release-notes }}
+
+            ### 🔗 Enlaces útiles
+            - [📖 Documentación](https://github.com/AngelCareaga/ngx-simple-datatable#readme)
+            - [🧪 Ejemplos en vivo](https://angelcareaga.github.io/ngx-simple-datatable/)
+            - [📦 NPM Package](https://www.npmjs.com/package/ngx-simple-datatable)
+          draft: false
+          prerelease: ${{ inputs.prerelease }}

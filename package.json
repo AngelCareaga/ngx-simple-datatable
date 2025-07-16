@@ -1,84 +1,83 @@
 {
-    "name": "@bhplugin/ng-datatable",
-    "version": "0.1.0",
-    "description": "ng-datatable - fully customizable & easy to use datatable library",
-    "private": false,
-    "author": {
-        "name": "Bhavesh Patel",
-        "email": "bhavesh.patel200@gmail.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/bhaveshpatel200/ng-datatable.git"
-    },
-    "bugs": {
-        "url": "https://github.com/bhaveshpatel200/ng-datatable/issues"
-    },
-    "homepage": "https://github.com/bhaveshpatel200/ng-datatable#readme",
-    "funding": "https://github.com/sponsors/bhaveshpatel200",
-    "keywords": [
-        "angular",
-        "angularjs",
-        "angular2",
-        "datatable",
-        "angular datatable",
-        "ng datatable",
-        "ng-datatable",
-        "ngx datatable",
-        "ngx-datatable",
-        "angular grid",
-        "angular table",
-        "datagrid",
-        "data-grid",
-        "data-table",
-        "data grid",
-        "data table",
-        "table",
-        "grid",
-        "filter",
-        "sorting",
-        "pagination"
-    ],
-    "license": "MIT",
-    "publishConfig": {
-        "access": "public"
-    },
-    "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build",
-        "watch": "ng build --watch --configuration development",
-        "test": "ng test",
-        "packagr": "npm run tailwind:build && ng-packagr -p ng-package.json",
-        "tailwind": "npx tailwindcss -i ./src/assets/css/tailwind.css -o ./lib/style.css --watch",
-        "tailwind:build": "npx tailwindcss -i ./src/assets/css/tailwind.css -o ./lib/style.css --minify"
-    },
-    "peerDependencies": {
-        "@angular/common": ">=2.0.0",
-        "@angular/core": ">=2.0.0"
-    },
-    "devDependencies": {
-        "@angular-devkit/build-angular": "^15.2.8",
-        "@angular/cli": "~15.2.8",
-        "@angular/common": "^15.2.9",
-        "@angular/forms": "^15.2.9",
-        "@angular/compiler": "^15.2.9",
-        "@angular/compiler-cli": "^15.2.9",
-        "@angular/core": "^15.2.9",
-        "@angular/platform-browser": "^15.2.9",
-        "@angular/platform-browser-dynamic": "^15.2.9",
-        "@angular/router": "^15.2.9",
-        "@types/jasmine": "~4.3.0",
-        "@types/node": "^18.13.0",
-        "jasmine-core": "~4.5.0",
-        "karma": "~6.4.0",
-        "karma-chrome-launcher": "~3.1.0",
-        "karma-coverage": "~2.2.0",
-        "karma-jasmine": "~5.1.0",
-        "karma-jasmine-html-reporter": "~2.0.0",
-        "ng-packagr": "^15.2.2",
-        "rxjs": "~7.8.0",
-        "typescript": "~4.9.4",
-        "zone.js": "~0.12.0"
-    }
+  "name": "ngx-simple-datatable",
+  "description": "Modern Angular DataTable component with Signals support",
+  "author": {
+    "name": "Angel Careaga",
+    "email": "dev.angelcareaga@gmail.com",
+    "url": "angelcareaga.com"
+  },
+  "version": "0.5.0",
+  "license": "MIT",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve example",
+    "build": "ng build example",
+    "build:lib": "ng build ngx-simple-datatable",
+    "build:all": "npm run build:lib && npm run build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:lib": "ng test ngx-simple-datatable",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "ng lint",
+    "prepare": "husky install",
+    "release": "./scripts/release.sh",
+    "release:patch": "npm version patch && git push && git push --tags",
+    "release:minor": "npm version minor && git push && git push --tags",
+    "release:major": "npm version major && git push && git push --tags",
+    "demo:build": "ng build example --configuration production",
+    "demo:deploy": "gh workflow run github-pages.yml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelCareaga/ngx-simple-datatable.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AngelCareaga/ngx-simple-datatable/issues"
+  },
+  "homepage": "https://github.com/AngelCareaga/ngx-simple-datatable#readme",
+  "keywords": [
+    "angular",
+    "typescript",
+    "datatable",
+    "table",
+    "grid",
+    "signals",
+    "angular17",
+    "pagination",
+    "sorting",
+    "filtering"
+  ],
+  "private": false,
+  "dependencies": {
+    "@angular/animations": ">=17.0.0 <21.0.0",
+    "@angular/common": ">=17.0.0 <21.0.0",
+    "@angular/compiler": ">=17.0.0 <21.0.0",
+    "@angular/core": ">=17.0.0 <21.0.0",
+    "@angular/forms": ">=17.0.0 <21.0.0",
+    "@angular/platform-browser": ">=17.0.0 <21.0.0",
+    "@angular/platform-browser-dynamic": ">=17.0.0 <21.0.0",
+    "@angular/router": ">=17.0.0 <21.0.0",
+    "rxjs": ">=7.4.0 <8.0.0",
+    "tslib": "^2.6.0",
+    "zone.js": ">=0.14.0 <1.0.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": ">=17.0.0 <21.0.0",
+    "@angular/cli": ">=17.0.0 <21.0.0",
+    "@angular/compiler-cli": ">=17.0.0 <21.0.0",
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "autoprefixer": "^10.4.21",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.5.2",
+    "ng-packagr": ">=17.0.0 <21.0.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "tailwindcss": "^3.4.1",
+    "typescript": ">=5.2.0 <6.0.0"
+  },
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }

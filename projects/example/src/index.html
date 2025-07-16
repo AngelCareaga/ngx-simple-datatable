@@ -1,0 +1,99 @@
+<!-- ./projects/example/src/index.html -->
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="utf-8" />
+    <title>ngx-simple-datatable - Modern Angular DataTable by Angel Careaga</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="ngx-simple-datatable - Modern Angular DataTable" />
+    <meta
+      name="description"
+      content="A modern Angular DataTable component with Signal-based reactivity, comprehensive theming, and TypeScript support for Angular 17-20. Built by Angel Careaga."
+    />
+    <meta name="author" content="Angel Careaga" />
+    <meta
+      name="keywords"
+      content="angular, datatable, signals, typescript, responsive, table, grid, angular17, angular18, angular19, angular20"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="creator" content="Angel Careaga" />
+    <meta name="publisher" content="Angel Careaga" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://angelcareaga.github.io/ngx-simple-datatable/" />
+    <meta property="og:title" content="ngx-simple-datatable - Modern Angular DataTable" />
+    <meta
+      property="og:description"
+      content="A modern Angular DataTable component with Signal-based reactivity, comprehensive theming, and TypeScript support for Angular 17-20. Built by Angel Careaga."
+    />
+    <meta property="og:image" content="https://angelcareaga.github.io/ngx-simple-datatable/assets/og-image.png" />
+    <meta property="og:site_name" content="ngx-simple-datatable" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://angelcareaga.github.io/ngx-simple-datatable/" />
+    <meta property="twitter:title" content="ngx-simple-datatable - Modern Angular DataTable" />
+    <meta
+      property="twitter:description"
+      content="A modern Angular DataTable component with Signal-based reactivity, comprehensive theming, and TypeScript support for Angular 17-20. Built by Angel Careaga."
+    />
+    <meta property="twitter:image" content="https://angelcareaga.github.io/ngx-simple-datatable/assets/twitter-image.png" />
+    <meta property="twitter:creator" content="@soyangelcareaga" />
+    <meta property="twitter:site" content="@soyangelcareaga" />
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="application-name" content="ngx-simple-datatable" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://angelcareaga.github.io/ngx-simple-datatable/" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Schema.org markup for Google+ -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "ngx-simple-datatable",
+        "description": "A modern Angular DataTable component with Signal-based reactivity, comprehensive theming, and TypeScript support for Angular 17-20",
+        "author": {
+          "@type": "Person",
+          "name": "Angel Careaga",
+          "url": "https://angelcareaga.com"
+        },
+        "url": "https://angelcareaga.github.io/ngx-simple-datatable/",
+        "downloadUrl": "https://www.npmjs.com/package/ngx-simple-datatable",
+        "softwareVersion": "0.5.0",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "programmingLanguage": "TypeScript",
+        "license": "https://opensource.org/licenses/MIT"
+      }
+    </script>
+
+    <script>
+      (function () {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+  <body class="h-full">
+    <app-root></app-root>
+  </body>
+</html>

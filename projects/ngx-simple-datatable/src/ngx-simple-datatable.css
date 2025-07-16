@@ -1,0 +1,248 @@
+/* projects/ngx-simple-datatable/src/ngx-simple-datatable.css */
+@import url('./lib/styles/_variables.css');
+@import url('./lib/styles/_mixins.css');
+@import url('./lib/styles/_base.css');
+@import url('./lib/styles/_table.css');
+@import url('./lib/styles/_header.css');
+@import url('./lib/styles/_checkbox.css');
+@import url('./lib/styles/_filter.css');
+@import url('./lib/styles/_pagination.css');
+@import url('./lib/styles/_responsive.css');
+
+/* Custom CSS Properties for external override */
+.ngx-simple-datatable {
+  /* Allow external CSS custom properties to override internal ones */
+  --ngx-sdt-color-primary: var(--datatable-primary-color, var(--ngx-sdt-color-primary));
+  --ngx-sdt-color-primary-hover: var(--datatable-primary-hover-color, var(--ngx-sdt-color-primary-hover));
+  --ngx-sdt-color-primary-light: var(--datatable-primary-light-color, var(--ngx-sdt-color-primary-light));
+
+  --ngx-sdt-color-text: var(--datatable-text-color, var(--ngx-sdt-color-text));
+  --ngx-sdt-color-text-muted: var(--datatable-text-muted-color, var(--ngx-sdt-color-text-muted));
+
+  --ngx-sdt-color-background: var(--datatable-background-color, var(--ngx-sdt-color-background));
+  --ngx-sdt-color-background-gray: var(--datatable-background-gray-color, var(--ngx-sdt-color-background-gray));
+
+  --ngx-sdt-color-border: var(--datatable-border-color, var(--ngx-sdt-color-border));
+  --ngx-sdt-color-border-hover: var(--datatable-border-hover-color, var(--ngx-sdt-color-border-hover));
+
+  --ngx-sdt-border-radius-sm: var(--datatable-border-radius-sm, var(--ngx-sdt-border-radius-sm));
+  --ngx-sdt-border-radius-md: var(--datatable-border-radius-md, var(--ngx-sdt-border-radius-md));
+  --ngx-sdt-border-radius-lg: var(--datatable-border-radius-lg, var(--ngx-sdt-border-radius-lg));
+
+  --ngx-sdt-font-size-xs: var(--datatable-font-size-xs, var(--ngx-sdt-font-size-xs));
+  --ngx-sdt-font-size-sm: var(--datatable-font-size-sm, var(--ngx-sdt-font-size-sm));
+  --ngx-sdt-font-size-base: var(--datatable-font-size-base, var(--ngx-sdt-font-size-base));
+  --ngx-sdt-font-size-md: var(--datatable-font-size-md, var(--ngx-sdt-font-size-md));
+  --ngx-sdt-font-size-lg: var(--datatable-font-size-lg, var(--ngx-sdt-font-size-lg));
+
+  --ngx-sdt-spacing-xs: var(--datatable-spacing-xs, var(--ngx-sdt-spacing-xs));
+  --ngx-sdt-spacing-sm: var(--datatable-spacing-sm, var(--ngx-sdt-spacing-sm));
+  --ngx-sdt-spacing-md: var(--datatable-spacing-md, var(--ngx-sdt-spacing-md));
+  --ngx-sdt-spacing-lg: var(--datatable-spacing-lg, var(--ngx-sdt-spacing-lg));
+  --ngx-sdt-spacing-xl: var(--datatable-spacing-xl, var(--ngx-sdt-spacing-xl));
+
+  --ngx-sdt-shadow-xs: var(--datatable-shadow-xs, var(--ngx-sdt-shadow-xs));
+  --ngx-sdt-shadow-sm: var(--datatable-shadow-sm, var(--ngx-sdt-shadow-sm));
+  --ngx-sdt-shadow-md: var(--datatable-shadow-md, var(--ngx-sdt-shadow-md));
+  --ngx-sdt-shadow-lg: var(--datatable-shadow-lg, var(--ngx-sdt-shadow-lg));
+
+  /* Size utilities */
+  --ngx-sdt-table-width: var(--datatable-width, 100%);
+  --ngx-sdt-table-height: var(--datatable-height, auto);
+  --ngx-sdt-table-max-height: var(--datatable-max-height, none);
+  --ngx-sdt-table-min-height: var(--datatable-min-height, 200px);
+}
+
+/* Tailwind CSS compatibility layer */
+.ngx-simple-datatable.tw-compat {
+  /* Reset Tailwind styles that might interfere */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Use Tailwind spacing if available */
+  --ngx-sdt-spacing-xs: theme('spacing.1', 0.25rem);
+  --ngx-sdt-spacing-sm: theme('spacing.2', 0.5rem);
+  --ngx-sdt-spacing-md: theme('spacing.3', 0.75rem);
+  --ngx-sdt-spacing-lg: theme('spacing.4', 1rem);
+  --ngx-sdt-spacing-xl: theme('spacing.6', 1.5rem);
+
+  /* Use Tailwind colors if available */
+  --ngx-sdt-color-primary: theme('colors.blue.600', #2563eb);
+  --ngx-sdt-color-primary-hover: theme('colors.blue.700', #1d4ed8);
+  --ngx-sdt-color-primary-light: theme('colors.blue.100', #dbeafe);
+
+  --ngx-sdt-color-text: theme('colors.gray.900', #1e293b);
+  --ngx-sdt-color-text-muted: theme('colors.gray.500', #64748b);
+
+  --ngx-sdt-color-background: theme('colors.white', #ffffff);
+  --ngx-sdt-color-background-gray: theme('colors.gray.50', #f8fafc);
+
+  --ngx-sdt-color-border: theme('colors.gray.200', #e2e8f0);
+  --ngx-sdt-color-border-hover: theme('colors.gray.300', #cbd5e1);
+
+  /* Use Tailwind border radius */
+  --ngx-sdt-border-radius-sm: theme('borderRadius.sm', 0.375rem);
+  --ngx-sdt-border-radius-md: theme('borderRadius.md', 0.5rem);
+  --ngx-sdt-border-radius-lg: theme('borderRadius.lg', 0.75rem);
+
+  /* Use Tailwind shadows */
+  --ngx-sdt-shadow-sm: theme('boxShadow.sm', 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  --ngx-sdt-shadow-md: theme('boxShadow.md', 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+  --ngx-sdt-shadow-lg: theme('boxShadow.lg', 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+}
+
+/* Bootstrap compatibility layer */
+.ngx-simple-datatable.bs-compat {
+  /* Use Bootstrap variables if available */
+  --ngx-sdt-color-primary: var(--bs-primary, #0d6efd);
+  --ngx-sdt-color-primary-hover: var(--bs-primary-hover, #0b5ed7);
+
+  --ngx-sdt-color-text: var(--bs-body-color, #212529);
+  --ngx-sdt-color-text-muted: var(--bs-secondary, #6c757d);
+
+  --ngx-sdt-color-background: var(--bs-body-bg, #ffffff);
+  --ngx-sdt-color-background-gray: var(--bs-light, #f8f9fa);
+
+  --ngx-sdt-color-border: var(--bs-border-color, #dee2e6);
+
+  /* Use Bootstrap border radius */
+  --ngx-sdt-border-radius-sm: var(--bs-border-radius-sm, 0.25rem);
+  --ngx-sdt-border-radius-md: var(--bs-border-radius, 0.375rem);
+  --ngx-sdt-border-radius-lg: var(--bs-border-radius-lg, 0.5rem);
+
+  /* Use Bootstrap font sizes */
+  --ngx-sdt-font-size-xs: 0.75rem;
+  --ngx-sdt-font-size-sm: 0.875rem;
+  --ngx-sdt-font-size-base: 1rem;
+  --ngx-sdt-font-size-md: 1rem;
+  --ngx-sdt-font-size-lg: 1.125rem;
+}
+
+/* Material Design compatibility layer */
+.ngx-simple-datatable.md-compat {
+  /* Material Design 3 inspired colors */
+  --ngx-sdt-color-primary: #6750a4;
+  --ngx-sdt-color-primary-hover: #5c43a5;
+  --ngx-sdt-color-primary-light: #e7e0ec;
+
+  --ngx-sdt-color-text: #1c1b1f;
+  --ngx-sdt-color-text-muted: #49454f;
+
+  --ngx-sdt-color-background: #fffbfe;
+  --ngx-sdt-color-background-gray: #f7f2fa;
+
+  --ngx-sdt-color-border: #79747e;
+  --ngx-sdt-color-border-hover: #625b71;
+
+  /* Material Design elevation shadows */
+  --ngx-sdt-shadow-sm: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --ngx-sdt-shadow-md: 0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --ngx-sdt-shadow-lg: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+
+  /* Material Design border radius */
+  --ngx-sdt-border-radius-sm: 0.25rem;
+  --ngx-sdt-border-radius-md: 0.5rem;
+  --ngx-sdt-border-radius-lg: 0.75rem;
+}
+
+/* Utility classes for common customizations */
+.ngx-simple-datatable.no-borders {
+  --ngx-sdt-color-border: transparent;
+  --ngx-sdt-border-width: 0;
+}
+
+.ngx-simple-datatable.rounded-none {
+  --ngx-sdt-border-radius-sm: 0;
+  --ngx-sdt-border-radius-md: 0;
+  --ngx-sdt-border-radius-lg: 0;
+}
+
+.ngx-simple-datatable.no-shadow {
+  --ngx-sdt-shadow-xs: none;
+  --ngx-sdt-shadow-sm: none;
+  --ngx-sdt-shadow-md: none;
+  --ngx-sdt-shadow-lg: none;
+}
+
+.ngx-simple-datatable.minimal {
+  --ngx-sdt-color-background-gray: transparent;
+  --ngx-sdt-pagination-background: transparent;
+  --ngx-sdt-header-background: transparent;
+  --ngx-sdt-footer-background: transparent;
+}
+
+.ngx-simple-datatable.dense {
+  --ngx-sdt-cell-padding-normal: 0.5rem 0.75rem;
+  --ngx-sdt-spacing-md: 0.5rem;
+  --ngx-sdt-spacing-lg: 0.75rem;
+}
+
+.ngx-simple-datatable.spacious {
+  --ngx-sdt-cell-padding-normal: 1.25rem 1.5rem;
+  --ngx-sdt-spacing-md: 1rem;
+  --ngx-sdt-spacing-lg: 1.5rem;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .ngx-simple-datatable {
+    --ngx-sdt-color-border: #000000;
+    --ngx-sdt-color-text: #000000;
+    --ngx-sdt-color-background: #ffffff;
+    --ngx-sdt-color-primary: #0000ff;
+  }
+}
+
+/* Dark mode support with system preference */
+@media (prefers-color-scheme: dark) {
+  .ngx-simple-datatable:not(.light-mode) {
+    --ngx-sdt-color-text: #f1f5f9;
+    --ngx-sdt-color-text-muted: #94a3b8;
+    --ngx-sdt-color-background: #0f172a;
+    --ngx-sdt-color-background-gray: #1e293b;
+    --ngx-sdt-color-background-gray-hover: #334155;
+    --ngx-sdt-color-background-gray-light: rgba(30, 41, 59, 0.6);
+    --ngx-sdt-color-background-gray-alt: rgba(51, 65, 85, 0.4);
+    --ngx-sdt-color-border: #334155;
+    --ngx-sdt-color-border-hover: #475569;
+    --ngx-sdt-color-overlay: rgba(15, 23, 42, 0.85);
+    --ngx-sdt-skeleton-color-start: #334155;
+    --ngx-sdt-skeleton-color-mid: #475569;
+    --ngx-sdt-skeleton-color-end: #334155;
+  }
+}
+
+/* Force light mode */
+.ngx-simple-datatable.light-mode {
+  --ngx-sdt-color-text: #1e293b;
+  --ngx-sdt-color-text-muted: #64748b;
+  --ngx-sdt-color-background: #ffffff;
+  --ngx-sdt-color-background-gray: #f8fafc;
+  --ngx-sdt-color-background-gray-hover: #f1f5f9;
+  --ngx-sdt-color-background-gray-light: rgba(248, 250, 252, 0.6);
+  --ngx-sdt-color-background-gray-alt: rgba(241, 245, 249, 0.4);
+  --ngx-sdt-color-border: #e2e8f0;
+  --ngx-sdt-color-border-hover: #cbd5e1;
+  --ngx-sdt-color-overlay: rgba(255, 255, 255, 0.85);
+  --ngx-sdt-skeleton-color-start: #f1f5f9;
+  --ngx-sdt-skeleton-color-mid: #e2e8f0;
+  --ngx-sdt-skeleton-color-end: #f1f5f9;
+}
+
+/* Force dark mode */
+.ngx-simple-datatable.dark-mode {
+  --ngx-sdt-color-text: #f1f5f9;
+  --ngx-sdt-color-text-muted: #94a3b8;
+  --ngx-sdt-color-background: #0f172a;
+  --ngx-sdt-color-background-gray: #1e293b;
+  --ngx-sdt-color-background-gray-hover: #334155;
+  --ngx-sdt-color-background-gray-light: rgba(30, 41, 59, 0.6);
+  --ngx-sdt-color-background-gray-alt: rgba(51, 65, 85, 0.4);
+  --ngx-sdt-color-border: #334155;
+  --ngx-sdt-color-border-hover: #475569;
+  --ngx-sdt-color-overlay: rgba(15, 23, 42, 0.85);
+  --ngx-sdt-skeleton-color-start: #334155;
+  --ngx-sdt-skeleton-color-mid: #475569;
+  --ngx-sdt-skeleton-color-end: #334155;
+}

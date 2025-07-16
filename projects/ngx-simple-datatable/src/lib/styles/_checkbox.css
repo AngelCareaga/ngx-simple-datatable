@@ -1,0 +1,128 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_checkbox.css */
+.ngx-sdt-checkbox {
+  box-sizing: border-box;
+}
+
+.ngx-sdt-checkbox__container {
+  position: relative;
+  display: inline-block;
+}
+
+.ngx-sdt-checkbox__input {
+  position: absolute;
+  width: var(--ngx-sdt-checkbox-size);
+  height: var(--ngx-sdt-checkbox-size);
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ngx-sdt-checkbox__visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--ngx-sdt-checkbox-size);
+  height: var(--ngx-sdt-checkbox-size);
+  border: var(--ngx-sdt-checkbox-border-width, 2px) solid
+    var(--ngx-sdt-checkbox-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(--ngx-sdt-checkbox-border-radius, var(--ngx-sdt-border-radius-sm));
+  background-color: var(--ngx-sdt-checkbox-background, var(--ngx-sdt-color-background));
+  transition: var(--ngx-sdt-transition-all);
+  box-shadow: var(--ngx-sdt-checkbox-shadow, var(--ngx-sdt-shadow-xs));
+}
+
+.ngx-sdt-checkbox__visual:hover {
+  border-color: var(--ngx-sdt-checkbox-hover-border, var(--ngx-sdt-color-primary));
+  transform: var(--ngx-sdt-checkbox-hover-transform, scale(1.05));
+  box-shadow: var(--ngx-sdt-checkbox-hover-shadow, var(--ngx-sdt-shadow-sm));
+}
+
+.ngx-sdt-checkbox__visual .ngx-sdt-checkbox__check-icon,
+.ngx-sdt-checkbox__visual .ngx-sdt-checkbox__dash-icon {
+  display: none;
+  width: var(--ngx-sdt-checkbox-icon-size, 0.75rem);
+  height: var(--ngx-sdt-checkbox-icon-size, 0.75rem);
+  color: var(--ngx-sdt-checkbox-icon-color, var(--ngx-sdt-color-background));
+  transition: var(--ngx-sdt-transition-transform);
+}
+
+.ngx-sdt-checkbox__input:checked + .ngx-sdt-checkbox__visual {
+  background-color: var(--ngx-sdt-checkbox-checked-background, var(--ngx-sdt-color-primary));
+  border-color: var(--ngx-sdt-checkbox-checked-border, var(--ngx-sdt-color-primary));
+  transform: var(--ngx-sdt-checkbox-checked-transform, scale(1.05));
+  box-shadow: var(--ngx-sdt-checkbox-checked-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+}
+
+.ngx-sdt-checkbox__input:checked + .ngx-sdt-checkbox__visual .ngx-sdt-checkbox__check-icon {
+  display: block;
+  animation: var(--ngx-sdt-checkbox-check-animation, checkboxCheckAnimation 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.ngx-sdt-checkbox__input:indeterminate + .ngx-sdt-checkbox__visual {
+  background-color: var(--ngx-sdt-checkbox-indeterminate-background, var(--ngx-sdt-color-primary));
+  border-color: var(--ngx-sdt-checkbox-indeterminate-border, var(--ngx-sdt-color-primary));
+  transform: var(--ngx-sdt-checkbox-indeterminate-transform, scale(1.05));
+  box-shadow: var(--ngx-sdt-checkbox-indeterminate-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+}
+
+.ngx-sdt-checkbox__input:indeterminate + .ngx-sdt-checkbox__visual .ngx-sdt-checkbox__dash-icon {
+  display: block;
+  animation: var(--ngx-sdt-checkbox-dash-animation, checkboxDashAnimation 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.ngx-sdt-checkbox__input:focus + .ngx-sdt-checkbox__visual {
+  box-shadow: var(--ngx-sdt-checkbox-focus-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+}
+
+.ngx-sdt-checkbox__input:disabled + .ngx-sdt-checkbox__visual {
+  opacity: var(--ngx-sdt-checkbox-disabled-opacity, 0.5);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@keyframes checkboxCheckAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes checkboxDashAnimation {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(1.2);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+.ngx-sdt-checkbox--large {
+  --ngx-sdt-checkbox-size: 1.5rem;
+  --ngx-sdt-checkbox-icon-size: 1rem;
+}
+
+.ngx-sdt-checkbox--small {
+  --ngx-sdt-checkbox-size: 1rem;
+  --ngx-sdt-checkbox-icon-size: 0.625rem;
+}
+
+.ngx-sdt-checkbox--rounded {
+  --ngx-sdt-checkbox-border-radius: 50%;
+}
+
+.ngx-sdt-checkbox--square {
+  --ngx-sdt-checkbox-border-radius: 0;
+}

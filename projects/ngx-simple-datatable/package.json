@@ -1,0 +1,35 @@
+{
+  "name": "ngx-simple-datatable",
+  "description": "Modern Angular DataTable component with Signals support",
+  "author": {
+    "name": "Angel Careaga",
+    "email": "dev.angelcareaga@gmail.com",
+    "url": "angelcareaga.com"
+  },
+  "version": "0.5.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AngelCareaga/ngx-simple-datatable.git"
+  },
+  "keywords": [
+    "angular",
+    "typescript",
+    "datatable",
+    "table",
+    "grid",
+    "signals",
+    "angular17",
+    "pagination",
+    "sorting",
+    "filtering"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=17.0.0 <21.0.0",
+    "@angular/core": ">=17.0.0 <21.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.6.0"
+  },
+  "sideEffects": false
+}

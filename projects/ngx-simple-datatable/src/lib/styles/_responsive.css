@@ -1,0 +1,293 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_responsive.css */
+@media (max-width: 1280px) {
+  .ngx-sdt-datatable {
+    font-size: var(--ngx-sdt-font-size-base);
+  }
+
+  .ngx-sdt-table .ngx-sdt-table__header-cell,
+  .ngx-sdt-table .ngx-sdt-table__cell {
+    padding: var(--ngx-sdt-cell-padding-md);
+  }
+
+  .ngx-sdt-header__title {
+    font-size: var(--ngx-sdt-font-size-base);
+  }
+
+  .ngx-sdt-pagination {
+    padding: var(--ngx-sdt-spacing-lg) var(--ngx-sdt-spacing-md);
+  }
+}
+
+@media (max-width: 1024px) {
+  .ngx-sdt-datatable {
+    font-size: var(--ngx-sdt-font-size-sm);
+  }
+
+  .ngx-sdt-table .ngx-sdt-table__header-cell,
+  .ngx-sdt-table .ngx-sdt-table__cell {
+    padding: var(--ngx-sdt-cell-padding-sm);
+  }
+
+  .ngx-sdt-header__title {
+    font-size: var(--ngx-sdt-font-size-sm);
+  }
+
+  .ngx-sdt-pagination {
+    gap: var(--ngx-sdt-spacing-md);
+  }
+
+  .ngx-sdt-pagination__controls {
+    gap: var(--ngx-sdt-spacing-xs);
+  }
+
+  .ngx-sdt-filter-menu {
+    min-width: 200px;
+  }
+
+  .ngx-sdt-table-container {
+    border-radius: var(--ngx-sdt-border-radius-md);
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-column-sizing-auto-fit {
+    --ngx-sdt-column-sizing-strategy: hybrid;
+  }
+}
+
+@media (max-width: 768px) {
+  .ngx-sdt-datatable {
+    font-size: var(--ngx-sdt-font-size-xs);
+  }
+
+  .ngx-sdt-table-container {
+    border-radius: var(--ngx-sdt-border-radius-md);
+  }
+
+  .ngx-sdt-table .ngx-sdt-table__header-cell,
+  .ngx-sdt-table .ngx-sdt-table__cell {
+    padding: var(--ngx-sdt-cell-padding-xs);
+  }
+
+  .ngx-sdt-header__title {
+    font-size: var(--ngx-sdt-font-size-xs);
+  }
+
+  .ngx-sdt-pagination {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--ngx-sdt-spacing-lg);
+    padding: var(--ngx-sdt-spacing-lg);
+  }
+
+  .ngx-sdt-pagination__info {
+    flex-direction: column;
+    gap: var(--ngx-sdt-spacing-sm);
+  }
+
+  .ngx-sdt-pagination__controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .ngx-sdt-filter-menu {
+    min-width: 180px;
+    left: 0;
+    right: auto;
+  }
+
+  .ngx-sdt-header__filter-container {
+    margin-top: var(--ngx-sdt-spacing-sm);
+  }
+
+  .ngx-sdt-datatable:not(.ngx-sdt-preserve-mobile-layout) {
+    --ngx-sdt-column-sizing-strategy: auto-width;
+    --ngx-sdt-allow-horizontal-scroll: true;
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table,
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table tbody,
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table tr,
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table td {
+    display: block;
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table__header {
+    display: none;
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table__row {
+    border: 1px solid var(--ngx-sdt-color-border);
+    border-radius: var(--ngx-sdt-border-radius-md);
+    margin-bottom: var(--ngx-sdt-spacing-md);
+    padding: var(--ngx-sdt-spacing-md);
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table__cell {
+    border: none;
+    padding: var(--ngx-sdt-spacing-xs) 0;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table__cell:before {
+    content: attr(data-label);
+    position: absolute;
+    left: var(--ngx-sdt-spacing-sm);
+    width: 45%;
+    padding-right: var(--ngx-sdt-spacing-sm);
+    white-space: nowrap;
+    font-weight: var(--ngx-sdt-font-weight-semibold);
+    color: var(--ngx-sdt-color-text-muted);
+  }
+}
+
+@media (max-width: 480px) {
+  .ngx-sdt-table-container {
+    border-radius: var(--ngx-sdt-border-radius-sm);
+    margin: 0 calc(-1 * var(--ngx-sdt-spacing-sm));
+  }
+
+  .ngx-sdt-table .ngx-sdt-table__header-cell:first-child,
+  .ngx-sdt-table .ngx-sdt-table__header-cell:last-child {
+    border-radius: 0;
+  }
+
+  .ngx-sdt-pagination {
+    border-radius: 0;
+    margin: 0 calc(-1 * var(--ngx-sdt-spacing-sm));
+  }
+
+  .ngx-sdt-pagination__button {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0 var(--ngx-sdt-spacing-sm);
+    font-size: var(--ngx-sdt-font-size-xs);
+  }
+
+  .ngx-sdt-pagination__button.ngx-sdt-pagination__button--number {
+    min-width: 2rem;
+  }
+
+  .ngx-sdt-filter-menu {
+    min-width: 160px;
+  }
+
+  .ngx-sdt-filter-menu__option {
+    padding: var(--ngx-sdt-spacing-sm) var(--ngx-sdt-spacing-md);
+    font-size: var(--ngx-sdt-font-size-xs);
+  }
+
+  .ngx-sdt-header__filter-input,
+  .ngx-sdt-header__filter-select {
+    font-size: var(--ngx-sdt-font-size-xs);
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table__cell {
+    padding-left: 40%;
+  }
+
+  .ngx-sdt-datatable.ngx-sdt-mobile-stack .ngx-sdt-table__cell:before {
+    width: 35%;
+  }
+
+  .ngx-sdt-datatable:not(.ngx-sdt-preserve-mobile-layout) {
+    --ngx-sdt-column-sizing-strategy: auto-width;
+    --ngx-sdt-allow-horizontal-scroll: true;
+    --ngx-sdt-preserve-readability: true;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .ngx-sdt-table.ngx-sdt-table--hover tbody .ngx-sdt-table__row:hover {
+    transform: none;
+  }
+
+  .ngx-sdt-header-cell.ngx-sdt-header-cell--sortable:hover .ngx-sdt-header__content {
+    transform: none;
+  }
+
+  .ngx-sdt-checkbox__visual:hover {
+    transform: none;
+  }
+
+  .ngx-sdt-pagination__button:hover:not(.ngx-sdt-button--disabled) {
+    transform: none;
+  }
+
+  .ngx-sdt-header__filter-button:hover {
+    transform: none;
+  }
+
+  .ngx-sdt-filter-menu__option:hover {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ngx-sdt-datatable *,
+  .ngx-sdt-datatable *::before,
+  .ngx-sdt-datatable *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  .ngx-sdt-datatable {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+
+  .ngx-sdt-table-container {
+    overflow: visible;
+    height: auto;
+  }
+
+  .ngx-sdt-pagination {
+    display: none;
+  }
+
+  .ngx-sdt-header__filter-container {
+    display: none;
+  }
+
+  .ngx-sdt-table__row {
+    page-break-inside: avoid;
+  }
+
+  .ngx-sdt-checkbox {
+    display: none;
+  }
+
+  .ngx-sdt-table {
+    width: 100% !important;
+    min-width: auto !important;
+  }
+}
+
+.ngx-sdt-scroll-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: var(--ngx-sdt-scrollbar-width, auto);
+  scrollbar-color: var(--ngx-sdt-scrollbar-color, auto);
+}
+
+.ngx-sdt-scroll-container::-webkit-scrollbar {
+  width: var(--ngx-sdt-scrollbar-webkit-width, 8px);
+  height: var(--ngx-sdt-scrollbar-webkit-height, 8px);
+}
+
+.ngx-sdt-scroll-container::-webkit-scrollbar-track {
+  background: var(--ngx-sdt-scrollbar-track-color, var(--ngx-sdt-color-background-gray));
+  border-radius: var(--ngx-sdt-scrollbar-track-border-radius, var(--ngx-sdt-border-radius-sm));
+}
+
+.ngx-sdt-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--ngx-sdt-scrollbar-thumb-color, var(--ngx-sdt-color-border-hover));
+  border-radius: var(--ngx-sdt-scrollbar-thumb-border-radius, var(--ngx-sdt-border-radius-sm));
+}
+
+.ngx-sdt-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: var(--ngx-sdt-scrollbar-thumb-hover-color, var(--ngx-sdt-color-primary));
+}

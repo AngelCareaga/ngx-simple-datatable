@@ -1,0 +1,166 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_pagination.css */
+.ngx-sdt-pagination {
+  display: flex;
+  justify-content: var(--ngx-sdt-pagination-justify, space-between);
+  align-items: center;
+  padding: var(--ngx-sdt-pagination-padding, var(--ngx-sdt-spacing-xl) var(--ngx-sdt-spacing-lg));
+  background-color: var(--ngx-sdt-pagination-background, var(--ngx-sdt-color-background-gray));
+  border-top: var(--ngx-sdt-pagination-border-width, 1px) solid
+    var(--ngx-sdt-pagination-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(
+    --ngx-sdt-pagination-border-radius,
+    0 0 var(--ngx-sdt-border-radius-lg) var(--ngx-sdt-border-radius-lg)
+  );
+  flex-wrap: wrap;
+  gap: var(--ngx-sdt-pagination-gap, var(--ngx-sdt-spacing-lg));
+}
+
+.ngx-sdt-pagination__info {
+  display: flex;
+  align-items: center;
+  gap: var(--ngx-sdt-pagination-info-gap, var(--ngx-sdt-spacing-md));
+}
+
+.ngx-sdt-pagination__info-text {
+  color: var(--ngx-sdt-pagination-info-color, var(--ngx-sdt-color-text-muted));
+  font-size: var(--ngx-sdt-pagination-info-font-size, var(--ngx-sdt-font-size-md));
+  font-weight: var(--ngx-sdt-pagination-info-font-weight, var(--ngx-sdt-font-weight-medium));
+  white-space: nowrap;
+}
+
+.ngx-sdt-pagination__page-size-select {
+  border: var(--ngx-sdt-page-size-select-border-width, 1px) solid
+    var(--ngx-sdt-page-size-select-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(--ngx-sdt-page-size-select-border-radius, var(--ngx-sdt-border-radius-md));
+  background-color: var(--ngx-sdt-page-size-select-background, var(--ngx-sdt-color-background));
+  color: var(--ngx-sdt-page-size-select-color, var(--ngx-sdt-color-text));
+  box-sizing: border-box;
+  padding: var(--ngx-sdt-page-size-select-padding, var(--ngx-sdt-spacing-sm) var(--ngx-sdt-spacing-md));
+  font-size: var(--ngx-sdt-page-size-select-font-size, var(--ngx-sdt-font-size-md));
+  font-weight: var(--ngx-sdt-page-size-select-font-weight, var(--ngx-sdt-font-weight-medium));
+  cursor: pointer;
+  transition: var(--ngx-sdt-transition-all);
+  appearance: none;
+  background-image: var(
+    --ngx-sdt-page-size-select-arrow,
+    url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E")
+  );
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  padding-right: 2.25rem;
+}
+
+.ngx-sdt-pagination__page-size-select:focus {
+  outline: none;
+  border-color: var(--ngx-sdt-page-size-select-focus-border, var(--ngx-sdt-color-primary));
+  box-shadow: var(--ngx-sdt-page-size-select-focus-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+  transform: var(--ngx-sdt-page-size-select-focus-transform, translateY(-1px));
+}
+
+.ngx-sdt-pagination__page-size-select:hover {
+  border-color: var(--ngx-sdt-page-size-select-hover-border, var(--ngx-sdt-color-primary));
+}
+
+.ngx-sdt-pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--ngx-sdt-pagination-controls-gap, var(--ngx-sdt-spacing-sm));
+}
+
+.ngx-sdt-pagination__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--ngx-sdt-pagination-button-border-width, 1px) solid
+    var(--ngx-sdt-pagination-button-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(--ngx-sdt-pagination-button-border-radius, var(--ngx-sdt-border-radius-md));
+  background-color: var(--ngx-sdt-pagination-button-background, var(--ngx-sdt-color-background));
+  color: var(--ngx-sdt-pagination-button-color, var(--ngx-sdt-color-text));
+  cursor: pointer;
+  transition: var(--ngx-sdt-transition-all);
+  user-select: none;
+  min-width: var(--ngx-sdt-pagination-button-min-width);
+  height: var(--ngx-sdt-pagination-button-height);
+  padding: var(--ngx-sdt-pagination-button-padding, 0 var(--ngx-sdt-spacing-md));
+  font-size: var(--ngx-sdt-pagination-button-font-size, var(--ngx-sdt-font-size-md));
+  font-weight: var(--ngx-sdt-pagination-button-font-weight, var(--ngx-sdt-font-weight-medium));
+  box-shadow: var(--ngx-sdt-pagination-button-shadow, var(--ngx-sdt-shadow-xs));
+}
+
+.ngx-sdt-pagination__button:hover:not(.ngx-sdt-button--disabled) {
+  background-color: var(--ngx-sdt-pagination-button-hover-background, var(--ngx-sdt-color-primary));
+  border-color: var(--ngx-sdt-pagination-button-hover-border, var(--ngx-sdt-color-primary));
+  color: var(--ngx-sdt-pagination-button-hover-color, var(--ngx-sdt-color-background));
+  transform: var(--ngx-sdt-pagination-button-hover-transform, translateY(-2px));
+  box-shadow: var(--ngx-sdt-pagination-button-hover-shadow, var(--ngx-sdt-shadow-md));
+}
+
+.ngx-sdt-pagination__button:focus {
+  outline: none;
+  border-color: var(--ngx-sdt-pagination-button-focus-border, var(--ngx-sdt-color-primary));
+  box-shadow: var(--ngx-sdt-pagination-button-focus-shadow, 0 0 0 3px var(--ngx-sdt-color-primary-light));
+}
+
+.ngx-sdt-pagination__button.ngx-sdt-button--disabled {
+  opacity: var(--ngx-sdt-pagination-button-disabled-opacity, 0.4);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.ngx-sdt-pagination__button.ngx-sdt-pagination__button--active {
+  background-color: var(--ngx-sdt-pagination-button-active-background, var(--ngx-sdt-color-primary));
+  border-color: var(--ngx-sdt-pagination-button-active-border, var(--ngx-sdt-color-primary));
+  color: var(--ngx-sdt-pagination-button-active-color, var(--ngx-sdt-color-background));
+  box-shadow: var(--ngx-sdt-pagination-button-active-shadow, var(--ngx-sdt-shadow-md));
+  transform: var(--ngx-sdt-pagination-button-active-transform, translateY(-1px));
+}
+
+.ngx-sdt-pagination__button.ngx-sdt-pagination__button--active:hover {
+  background-color: var(--ngx-sdt-pagination-button-active-hover-background, var(--ngx-sdt-color-primary-hover));
+  transform: var(--ngx-sdt-pagination-button-active-hover-transform, translateY(-2px));
+  box-shadow: var(--ngx-sdt-pagination-button-active-hover-shadow, var(--ngx-sdt-shadow-lg));
+}
+
+.ngx-sdt-pagination__button.ngx-sdt-pagination__button--number {
+  min-width: var(--ngx-sdt-pagination-button-number-min-width);
+  font-variant-numeric: tabular-nums;
+}
+
+.ngx-sdt-pagination__arrow-icon {
+  width: var(--ngx-sdt-pagination-arrow-icon-size, var(--ngx-sdt-icon-size-sm));
+  height: var(--ngx-sdt-pagination-arrow-icon-size, var(--ngx-sdt-icon-size-sm));
+  fill: currentColor;
+  transition: var(--ngx-sdt-transition-transform);
+}
+
+.ngx-sdt-pagination__button:hover .ngx-sdt-pagination__arrow-icon {
+  transform: var(--ngx-sdt-pagination-arrow-icon-hover-transform, scale(1.1));
+}
+
+.ngx-sdt-pagination--centered {
+  --ngx-sdt-pagination-justify: center;
+}
+
+.ngx-sdt-pagination--minimal {
+  --ngx-sdt-pagination-padding: var(--ngx-sdt-spacing-md) var(--ngx-sdt-spacing-lg);
+  --ngx-sdt-pagination-background: transparent;
+  --ngx-sdt-pagination-border-width: 0;
+}
+
+.ngx-sdt-pagination--compact {
+  --ngx-sdt-pagination-button-height: 2rem;
+  --ngx-sdt-pagination-button-min-width: 2rem;
+  --ngx-sdt-pagination-button-number-min-width: 2.25rem;
+  --ngx-sdt-pagination-button-font-size: var(--ngx-sdt-font-size-sm);
+  --ngx-sdt-pagination-gap: var(--ngx-sdt-spacing-sm);
+  --ngx-sdt-pagination-controls-gap: var(--ngx-sdt-spacing-xs);
+}
+
+.ngx-sdt-pagination--large {
+  --ngx-sdt-pagination-button-height: 2.75rem;
+  --ngx-sdt-pagination-button-min-width: 2.75rem;
+  --ngx-sdt-pagination-button-number-min-width: 3rem;
+  --ngx-sdt-pagination-button-font-size: var(--ngx-sdt-font-size-lg);
+  --ngx-sdt-pagination-gap: var(--ngx-sdt-spacing-xl);
+}

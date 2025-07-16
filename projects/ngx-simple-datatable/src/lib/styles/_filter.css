@@ -1,0 +1,109 @@
+/* projects/ngx-simple-datatable/src/lib/styles/_filter.css */
+.ngx-sdt-filter-menu {
+  position: absolute;
+  top: 100%;
+  right: var(--ngx-sdt-filter-menu-right, 0);
+  left: var(--ngx-sdt-filter-menu-left, auto);
+  z-index: var(--ngx-sdt-z-index-dropdown);
+  margin-top: var(--ngx-sdt-filter-menu-margin-top, var(--ngx-sdt-spacing-sm));
+  min-width: var(--ngx-sdt-filter-menu-min-width, 220px);
+  max-width: var(--ngx-sdt-filter-menu-max-width, 320px);
+  background-color: var(--ngx-sdt-filter-menu-background, var(--ngx-sdt-color-background));
+  border: var(--ngx-sdt-filter-menu-border-width, 1px) solid
+    var(--ngx-sdt-filter-menu-border-color, var(--ngx-sdt-color-border));
+  border-radius: var(--ngx-sdt-filter-menu-border-radius, var(--ngx-sdt-border-radius-lg));
+  box-shadow: var(--ngx-sdt-filter-menu-shadow, var(--ngx-sdt-shadow-lg));
+  backdrop-filter: var(--ngx-sdt-filter-menu-backdrop-filter, blur(8px));
+  animation: var(--ngx-sdt-filter-menu-animation, filterMenuSlideIn 0.2s cubic-bezier(0.4, 0, 0.2, 1));
+}
+
+.ngx-sdt-filter-menu__options {
+  padding: var(--ngx-sdt-filter-menu-options-padding, var(--ngx-sdt-spacing-sm));
+  font-size: var(--ngx-sdt-filter-menu-font-size, var(--ngx-sdt-font-size-md));
+  max-height: var(--ngx-sdt-filter-menu-max-height, 320px);
+  overflow-y: auto;
+}
+
+.ngx-sdt-filter-menu__option {
+  display: block;
+  width: 100%;
+  padding: var(--ngx-sdt-filter-option-padding, var(--ngx-sdt-spacing-md) var(--ngx-sdt-spacing-lg));
+  text-align: var(--ngx-sdt-filter-option-text-align, left);
+  color: var(--ngx-sdt-filter-option-color, var(--ngx-sdt-color-text));
+  background-color: var(--ngx-sdt-filter-option-background, transparent);
+  border: var(--ngx-sdt-filter-option-border, none);
+  border-radius: var(--ngx-sdt-filter-option-border-radius, var(--ngx-sdt-border-radius-md));
+  cursor: pointer;
+  transition: var(--ngx-sdt-transition-all);
+  font-weight: var(--ngx-sdt-filter-option-font-weight, var(--ngx-sdt-font-weight-medium));
+  font-size: var(--ngx-sdt-filter-option-font-size, var(--ngx-sdt-font-size-base));
+  margin-bottom: var(--ngx-sdt-filter-option-margin-bottom, var(--ngx-sdt-spacing-xs));
+}
+
+.ngx-sdt-filter-menu__option:last-child {
+  margin-bottom: 0;
+}
+
+.ngx-sdt-filter-menu__option:hover {
+  background-color: var(--ngx-sdt-filter-option-hover-background, var(--ngx-sdt-color-background-gray-hover));
+  transform: var(--ngx-sdt-filter-option-hover-transform, translateX(4px));
+  box-shadow: var(--ngx-sdt-filter-option-hover-shadow, var(--ngx-sdt-shadow-sm));
+}
+
+.ngx-sdt-filter-menu__option.ngx-sdt-filter-menu__option--active {
+  background-color: var(--ngx-sdt-filter-option-active-background, var(--ngx-sdt-color-primary));
+  color: var(--ngx-sdt-filter-option-active-color, var(--ngx-sdt-color-background));
+  box-shadow: var(--ngx-sdt-filter-option-active-shadow, var(--ngx-sdt-shadow-md));
+  transform: var(--ngx-sdt-filter-option-active-transform, translateX(2px));
+}
+
+.ngx-sdt-filter-menu__option.ngx-sdt-filter-menu__option--active:hover {
+  background-color: var(--ngx-sdt-filter-option-active-hover-background, var(--ngx-sdt-color-primary-hover));
+  transform: var(--ngx-sdt-filter-option-active-hover-transform, translateX(6px));
+}
+
+.ngx-sdt-filter-menu__option:focus {
+  outline: none;
+  background-color: var(--ngx-sdt-filter-option-focus-background, var(--ngx-sdt-color-background-gray-hover));
+  box-shadow: var(--ngx-sdt-filter-option-focus-shadow, 0 0 0 2px var(--ngx-sdt-color-primary-light));
+}
+
+.ngx-sdt-filter-menu__option:disabled {
+  opacity: var(--ngx-sdt-filter-option-disabled-opacity, 0.5);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@keyframes filterMenuSlideIn {
+  from {
+    opacity: 0;
+    transform: var(--ngx-sdt-filter-menu-slide-from, translateY(-8px) scale(0.95));
+  }
+  to {
+    opacity: 1;
+    transform: var(--ngx-sdt-filter-menu-slide-to, translateY(0) scale(1));
+  }
+}
+
+.ngx-sdt-filter-menu--left {
+  --ngx-sdt-filter-menu-right: auto;
+  --ngx-sdt-filter-menu-left: 0;
+}
+
+.ngx-sdt-filter-menu--center {
+  --ngx-sdt-filter-menu-right: auto;
+  --ngx-sdt-filter-menu-left: 50%;
+  transform: translateX(-50%);
+}
+
+.ngx-sdt-filter-menu--compact {
+  --ngx-sdt-filter-menu-min-width: 180px;
+  --ngx-sdt-filter-option-padding: var(--ngx-sdt-spacing-sm) var(--ngx-sdt-spacing-md);
+  --ngx-sdt-filter-option-font-size: var(--ngx-sdt-font-size-sm);
+}
+
+.ngx-sdt-filter-menu--large {
+  --ngx-sdt-filter-menu-min-width: 280px;
+  --ngx-sdt-filter-option-padding: var(--ngx-sdt-spacing-lg) var(--ngx-sdt-spacing-xl);
+  --ngx-sdt-filter-option-font-size: var(--ngx-sdt-font-size-lg);
+}

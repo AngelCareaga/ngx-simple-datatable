@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@layer base {
+  html,
+  body {
+    @apply antialiased font-sans;
+    @apply text-gray-900 bg-gray-50;
+    @apply transition-colors duration-300;
+  }
+
+  .dark {
+    @apply text-gray-50 bg-gray-900;
+  }
+
+  * {
+    @apply transition-colors;
+    transition-duration: var(--transition-normal);
+  }
+}
+
+@layer components {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-lg;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500 dark:bg-gray-500;
+  }
+
+  /* DataTable custom styles */
+  .modern-table {
+    @apply rounded-lg overflow-hidden;
+  }
+
+  .advanced-table {
+    @apply rounded-xl;
+  }
+
+  .server-table {
+    @apply rounded-lg;
+  }
+
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+}
+
+/* Dark mode adjustments for ngx-simple-datatable */
+.dark .ngx-simple-datatable {
+  /* Override library styles for dark mode compatibility */
+  --ngx-sdt-color-background: theme("colors.gray.800");
+  --ngx-sdt-color-text: theme("colors.gray.100");
+  --ngx-sdt-color-border: theme("colors.gray.700");
+}

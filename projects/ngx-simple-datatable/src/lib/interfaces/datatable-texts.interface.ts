@@ -1,0 +1,35 @@
+// projects/ngx-simple-datatable/src/lib/interfaces/datatable-texts.interface.ts
+export interface DatatableTexts {
+  paginationInfo?: string;
+  itemsPerPage?: string;
+  noItems?: string;
+  filterPlaceholder?: string;
+  noFilter?: string;
+  contains?: string;
+  notContains?: string;
+  equals?: string;
+  notEquals?: string;
+  startsWith?: string;
+  endsWith?: string;
+  greaterThan?: string;
+  greaterThanEqual?: string;
+  lessThan?: string;
+  lessThanEqual?: string;
+  after?: string;
+  before?: string;
+  isEmpty?: string;
+  isNotEmpty?: string;
+  booleanTrue?: string;
+  booleanFalse?: string;
+  booleanYes?: string;
+  booleanNo?: string;
+  booleanAll?: string;
+  noData?: string;
+  loading?: string;
+  search?: string;
+  sortAscending?: string;
+  sortDescending?: string;
+  selectAll?: string;
+  selectRow?: string;
+  filterMenu?: string;
+}
