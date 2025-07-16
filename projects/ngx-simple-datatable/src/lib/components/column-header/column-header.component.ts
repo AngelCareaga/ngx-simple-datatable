@@ -43,8 +43,8 @@ import { DashIconComponent } from '../icons/dash-icon.component';
         <th
           [class]="getHeaderClass(col, j)"
           [style.width.px]="getColumnWidth(col.field)"
-          [style.min-width.px]="getColumnWidth(col.field)"
-          [style.max-width.px]="getColumnWidth(col.field)"
+          [style.min-width.px]="getColumnMinWidth(col.field)"
+          [style.max-width.px]="getColumnMaxWidth(col.field)"
         >
           <div
             class="ngx-sdt-header__content"
@@ -200,6 +200,22 @@ export class ColumnHeaderComponent {
   getColumnWidth(field: string): number {
     const columnWidth = this.columnWidths().find(col => col.field === field);
     return columnWidth ? columnWidth.width : 100;
+  }
+
+  getColumnMinWidth(field: string): number | null {
+    const columnWidth = this.columnWidths().find(col => col.field === field);
+    if (!columnWidth) return null;
+
+    return columnWidth.minWidth && columnWidth.minWidth !== columnWidth.width ? columnWidth.minWidth : null;
+  }
+
+  getColumnMaxWidth(field: string): number | null {
+    const columnWidth = this.columnWidths().find(col => col.field === field);
+    if (!columnWidth) return null;
+
+    return columnWidth.maxWidth && columnWidth.maxWidth !== Infinity && columnWidth.maxWidth !== columnWidth.width
+      ? columnWidth.maxWidth
+      : null;
   }
 
   onSelectAll(checked: boolean): void {

@@ -126,8 +126,8 @@ import { interpolateWithPlural } from '../../utils/text-utils';
                       class="ngx-sdt-table__cell"
                       [class]="getCellClass(item, col, j)"
                       [style.width.px]="getColumnWidth(col.field)"
-                      [style.min-width.px]="getColumnWidth(col.field)"
-                      [style.max-width.px]="getColumnWidth(col.field)"
+                      [style.min-width.px]="getColumnMinWidth(col.field)"
+                      [style.max-width.px]="getColumnMaxWidth(col.field)"
                     >
                       <div class="ngx-sdt-table__cell-content">
                         @if (hasSlot(col.field)) {
@@ -661,6 +661,40 @@ export class SimpleDatatableComponent {
   getColumnWidth(field: string): number {
     const columnWidth = this.finalColumnWidths().find(col => col.field === field);
     return columnWidth ? columnWidth.width : this.getResponsiveBaseWidth('string');
+  }
+
+  getColumnMinWidth(field: string): number | null {
+    const strategy = this.columnSizingStrategy();
+    const columnWidth = this.finalColumnWidths().find(col => col.field === field);
+
+    if (!columnWidth) return null;
+
+    switch (strategy) {
+      case 'auto-fit':
+        return null;
+      case 'auto-width':
+      case 'hybrid':
+        return columnWidth.minWidth;
+      default:
+        return null;
+    }
+  }
+
+  getColumnMaxWidth(field: string): number | null {
+    const strategy = this.columnSizingStrategy();
+    const columnWidth = this.finalColumnWidths().find(col => col.field === field);
+
+    if (!columnWidth) return null;
+
+    switch (strategy) {
+      case 'auto-fit':
+      case 'auto-width':
+        return null;
+      case 'hybrid':
+        return columnWidth.maxWidth !== Infinity ? columnWidth.maxWidth : null;
+      default:
+        return null;
+    }
   }
 
   getFilterInputClass(): string {
